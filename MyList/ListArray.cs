@@ -95,6 +95,21 @@
             Constriction(_array);
         }
 
+        public void PopElemsFromStart(int count)
+        {
+            int tmp = count;
+            for (int i = 0; i < count; i++)
+            {
+                for (int j = tmp; j < Length; j++)
+                {
+                    _array[j] = _array[j + 1];
+                }
+                tmp--;
+            }
+            Length -= count;
+            Constriction(_array);
+        }
+
         private void Constriction(int[] _array)
         {
             int minLength = (int)(_array.Length * 0.6);
