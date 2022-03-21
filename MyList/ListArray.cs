@@ -63,6 +63,27 @@
             Length++;
         }
 
+        public void Pop()
+        {
+            int minLength = (int)(_array.Length * 0.6);
+            if (Length <= minLength)
+            {
+                Constriction(_array);
+            }
+            Length--;
+        }
+
+        private void Constriction(int[] _array)
+        {
+            int newLength = (int)(_array.Length * 0.6d + 1);
+            int[] newArray = new int[newLength];
+            for (int i = 0; i < _array.Length; i++)
+            {
+                newArray[i] = _array[i];
+            }
+            _array = newArray;
+        }
+
         private void Extention(int[] _array)
         {
             int newLength = (int)(_array.Length * 1.5d + 1);
