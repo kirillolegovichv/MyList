@@ -23,6 +23,26 @@
             Length++;
         }
 
+        public void AddToStart(int value)
+        {
+            if (Length + 1 >= _array.Length)
+            {
+                int newLength = (int)(_array.Length * 1.5d + 1);
+                int[] newArray = new int[newLength];
+                for (int i = Length + 1; i > 0; i--)
+                {
+                    newArray[i] = _array[i - 1];
+                }
+                newArray[0] = value;
+                _array = newArray;
+            }
+            for (int i = Length + 1; i > 0; i--)
+            {
+                _array[i] = _array[i - 1];
+            }
+            _array[0] = value;
+        }
+
         private void Extention(int[] _array)
         {
             int newLength = (int)(_array.Length * 1.5d + 1);
