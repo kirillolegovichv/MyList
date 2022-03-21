@@ -65,17 +65,34 @@
 
         public void Pop()
         {
-            Constriction(_array);
             Length--;
+            Constriction(_array);
         }
 
         public void PopFromStart()
         {
-            Constriction(_array);
             for (int i = 0; i < Length; i++)
             {
                 _array[i] = _array[i + 1];
             }
+            Length--;
+            Constriction(_array);
+        }
+
+        public void PopByIndex(int index)
+        {
+            for (int i = index; i < Length; i++)
+            {
+                _array[i] = _array[i + 1];
+            }
+            Length--;
+            Constriction(_array);
+        }
+
+        public void PopElems(int count)
+        {
+            Length -= count;
+            Constriction(_array);
         }
 
         private void Constriction(int[] _array)
