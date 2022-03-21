@@ -65,23 +65,32 @@
 
         public void Pop()
         {
-            int minLength = (int)(_array.Length * 0.6);
-            if (Length <= minLength)
-            {
-                Constriction(_array);
-            }
+            Constriction(_array);
             Length--;
+        }
+
+        public void PopFromStart()
+        {
+            Constriction(_array);
+            for (int i = 0; i < Length; i++)
+            {
+                _array[i] = _array[i + 1];
+            }
         }
 
         private void Constriction(int[] _array)
         {
-            int newLength = (int)(_array.Length * 0.6d + 1);
-            int[] newArray = new int[newLength];
-            for (int i = 0; i < _array.Length; i++)
+            int minLength = (int)(_array.Length * 0.6);
+            if (Length <= minLength)
             {
-                newArray[i] = _array[i];
+                int newLength = (int)(_array.Length * 0.6d + 1);
+                int[] newArray = new int[newLength];
+                for (int i = 0; i < _array.Length; i++)
+                {
+                    newArray[i] = _array[i];
+                }
+                _array = newArray;
             }
-            _array = newArray;
         }
 
         private void Extention(int[] _array)
@@ -94,5 +103,6 @@
             }
             _array = newArray;
         }
+
     }
 }
