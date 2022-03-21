@@ -36,11 +36,31 @@
                 newArray[0] = value;
                 _array = newArray;
             }
-            for (int i = Length + 1; i > 0; i--)
+            else
+            {
+                for (int i = Length + 1; i > 0; i--)
+                {
+                    _array[i] = _array[i - 1];
+                }
+                _array[0] = value;
+            }
+            Length++;
+        }
+
+        public void AddToIndex(int index, int value)
+        {
+            if (Length + 1 >= _array.Length)
+            {
+                Extention(_array);
+            }
+
+            for (int i = Length + 1; i > index; i--)
             {
                 _array[i] = _array[i - 1];
             }
-            _array[0] = value;
+
+            _array[index] = value;
+            Length++;
         }
 
         private void Extention(int[] _array)
