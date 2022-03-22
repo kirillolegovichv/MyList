@@ -110,6 +110,29 @@
             Constriction(_array);
         }
 
+        public void PopElemsByIndex(int index, int count)
+        {
+            if (index > Length)
+            {
+                throw new Exception("Index must be lower than length");
+            }
+            if (index + count > Length)
+            {
+                throw new Exception("Count elements are out of range");
+            }
+            int tmp = count;
+            for (int i = index; i < count; i++)
+            {
+                for (int j = tmp; j < Length; j++)
+                {
+                    _array[j] = _array[j + 1];
+                }
+                tmp--;
+            }
+            Length -= count;
+            Constriction(_array);
+        }
+
         private void Constriction(int[] _array)
         {
             int minLength = (int)(_array.Length * 0.6);
