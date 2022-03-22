@@ -133,6 +133,48 @@
             Constriction(_array);
         }
 
+        public int Element(int index)
+        {
+            if (index > Length)
+            {
+                throw new Exception("Index is out of range");
+            }
+            return _array[index];
+        }
+
+        public int FirstIndexByElem(int elem)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == elem)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public void ChangeElemByIndex(int index, int value)
+        {
+            if (index > Length)
+            {
+                throw new Exception("Index is out of range");
+            }
+            _array[index] = value;
+        }
+
+        public void Reverse()
+        {
+            int[] newArray = new int[_array.Length];
+            int reverseIndex = _array.Length - 1;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                newArray[i] = _array[reverseIndex];
+                reverseIndex--;
+            }
+            _array = newArray;
+        }
+
         private void Constriction(int[] _array)
         {
             int minLength = (int)(_array.Length * 0.6);
