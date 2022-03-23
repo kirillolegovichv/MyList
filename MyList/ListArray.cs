@@ -165,14 +165,106 @@
 
         public void Reverse()
         {
-            int[] newArray = new int[_array.Length];
-            int reverseIndex = _array.Length - 1;
-            for (int i = 0; i < _array.Length; i++)
+            int[] newArray = new int[Length];
+            int reverseIndex = Length - 1;
+            for (int i = 0; i < Length; i++)
             {
                 newArray[i] = _array[reverseIndex];
                 reverseIndex--;
             }
             _array = newArray;
+            Extention(_array);
+        }
+
+        public int MaxValue()
+        {
+            int max = _array[0];
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] > max)
+                {
+                    max = _array[i];
+                }
+            }
+
+            return max;
+        }
+
+        public int MinValue()
+        {
+            int min = _array[0];
+            for (int i = 1; i < _array.Length; i++)
+            {
+                if (_array[i] < min)
+                {
+                    min = _array[i];
+                }
+            }
+
+            return min;
+        }
+
+        public int IndexOfMaxValue()
+        {
+            int index = 0;
+            int max = _array[0];
+            for (int i = 1; i < _array.Length; i++)
+            {
+                if (_array[i] > max)
+                {
+                    index = i;
+                    max = _array[i];
+                }
+            }
+
+            return index;
+        }
+
+        public int IndexOfMinValue()
+        {
+            int index = 0;
+            int min = _array[0];
+            for (int i = 1; i < _array.Length; i++)
+            {
+                if (_array[i] < min)
+                {
+                    index = i;
+                    min = _array[i];
+                }
+            }
+
+            return index;
+        }
+
+        public void AscendingSort()
+        {
+            for (int i = 0; i < _array.Length; i++)
+            {
+                for (int j = i + 1; j < _array.Length; j++)
+                {
+                    if (_array[j] < _array[i])
+                    {
+                        int tmp = _array[i];
+                        _array[i] = _array[j];
+                        _array[j] = tmp;
+                    }
+                }
+            }
+        }
+
+        public void DescendingSort()
+        {
+            for (int i = 1; i < _array.Length; i++)
+            {
+                int j = i - 1;
+                while (j >= 0 && _array[j] < _array[j + 1])
+                {
+                    int tmp = _array[j];
+                    _array[j] = _array[j + 1];
+                    _array[j + 1] = tmp;
+                    j--;
+                }
+            }
         }
 
         private void Constriction(int[] _array)
