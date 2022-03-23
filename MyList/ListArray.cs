@@ -267,6 +267,24 @@
             }
         }
 
+        public int PopElem(int value)
+        {
+            int tmp;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    tmp = i;
+                    for (int j = i; j < _array.Length; j++)
+                    {
+                        _array[j] = _array[j + 1];
+                    }
+                    return tmp;
+                }
+            }
+            return -1;
+        }
+
         private void Constriction(int[] _array)
         {
             int minLength = (int)(_array.Length * 0.6);
