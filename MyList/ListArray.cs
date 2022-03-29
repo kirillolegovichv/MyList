@@ -8,7 +8,7 @@
 
         public ListArray()
         {
-            _array = new int[0];
+            _array = new int[10];
             Length = 0;
         }
 
@@ -283,6 +283,29 @@
                 }
             }
             return -1;
+        }
+
+        public void PopAllByValue(int value)
+        {
+            int count = 0;
+            for (int i = 0; i < _array.Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    count++;
+                }
+                else
+                {
+                    _array[i - count] = _array[i];
+                }
+            }
+            Length -= count;
+            Constriction(_array);
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
 
         private void Constriction(int[] _array)
