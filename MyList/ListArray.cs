@@ -350,7 +350,7 @@
             return base.ToString();
         }
 
-        private void Constriction(int[] _array)
+        private void Constriction()
         {
             int minLength = (int)(_array.Length * 0.6);
             if (Length <= minLength)
@@ -361,7 +361,7 @@
             }
         }
 
-        private void Extention(int[] _array)
+        private void Extention()
         {
             int newLength = (int)(_array.Length * 1.5d + 1);
             int[] newArray = new int[newLength];
