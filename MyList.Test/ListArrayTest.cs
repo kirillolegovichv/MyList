@@ -78,12 +78,85 @@ namespace MyList.Test
         }
 
         [TestCaseSource(typeof(FirstIndexByElemTest))]
-        public void FirstIndexByElemTest(int elem, ListArray list, ListArray expected)
+        public void FirstIndexByElemTest(int elem, ListArray list, int expected)
         {
             int actual = list.FirstIndexByElem(elem);
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCaseSource(typeof(ChangeElemByIndexTest))]
+        public void ChangeElemByIndexTest(int index, int value, ListArray list, ListArray expectedList)
+        {
+            ListArray actualList = list;
+            actualList.ChangeElemByIndex(index, value);
+            Assert.AreEqual(expectedList, actualList);
+        }
 
+        [TestCaseSource(typeof(ReverseTest))]
+        public void ReverseTest(ListArray list, ListArray expectedList)
+        {
+            ListArray actualList = list;
+            actualList.Reverse();
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(MaxValueTest))]
+        public void MaxValueTest(ListArray list, int expected)
+        {
+            int actual = list.MaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(MinValueTest))]
+        public void MinValueTest(ListArray list, int expected)
+        {
+            int actual = list.MinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(IndexOfMaxValueTest))]
+        public void IndexOfMaxValueTest(ListArray list, int expected)
+        {
+            int actual = list.IndexOfMaxValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(IndexOfMinValueTest))]
+        public void IndexOfMinValueTest(ListArray list, int expected)
+        {
+            int actual = list.IndexOfMinValue();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(AscendingSortTest))]
+        public void AscendingSortTest(ListArray list, ListArray expectedList)
+        {
+            ListArray actualList = list;
+            actualList.AscendingSort();
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(DescendingSortTest))]
+        public void DescendingSortTest(ListArray list, ListArray expectedList)
+        {
+            ListArray actualList = list;
+            actualList.DescendingSort();
+            Assert.AreEqual(expectedList, actualList);
+        }
+
+        [TestCaseSource(typeof(PopElemTest))]
+        public void PopElemTest(int value, ListArray list, int expected)
+        {
+            int actual = list.PopElem(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCaseSource(typeof(PopAllByValueTest))]
+        public void PopAllByValueTest(int value, ListArray list, ListArray expectedList)
+        {
+            ListArray actualList = list;
+            actualList.PopAllByValue(value);
+            Assert.AreEqual(expectedList, actualList);
+        }
     }
 }
