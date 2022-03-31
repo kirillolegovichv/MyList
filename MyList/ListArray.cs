@@ -58,7 +58,7 @@
         {
             if (Length >= _array.Length)
             {
-                Extention(_array);
+                Extention();
             }
 
             _array[Length] = value;
@@ -93,7 +93,7 @@
         {
             if (Length + 1 >= _array.Length)
             {
-                Extention(_array);
+                Extention();
             }
 
             for (int i = Length + 1; i > index; i--)
@@ -108,7 +108,7 @@
         public void Pop()
         {
             Length--;
-            Constriction(_array);
+            Constriction();
         }
 
         public void PopFromStart()
@@ -118,7 +118,7 @@
                 _array[i] = _array[i + 1];
             }
             Length--;
-            Constriction(_array);
+            Constriction();
         }
 
         public void PopByIndex(int index)
@@ -128,13 +128,13 @@
                 _array[i] = _array[i + 1];
             }
             Length--;
-            Constriction(_array);
+            Constriction();
         }
 
         public void PopElems(int count)
         {
             Length -= count;
-            Constriction(_array);
+            Constriction();
         }
 
         public void PopElemsFromStart(int count)
@@ -149,7 +149,7 @@
                 tmp--;
             }
             Length -= count;
-            Constriction(_array);
+            Constriction();
         }
 
         public void PopElemsByIndex(int index, int count)
@@ -172,7 +172,7 @@
                 tmp--;
             }
             Length -= count;
-            Constriction(_array);
+            Constriction();
         }
 
         public int Element(int index)
@@ -215,7 +215,7 @@
                 reverseIndex--;
             }
             _array = newArray;
-            Extention(_array);
+            Extention();
         }
 
         public int MaxValue()
@@ -342,12 +342,49 @@
                 }
             }
             Length -= count;
-            Constriction(_array);
+            Constriction();
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            string str = "";
+
+            for (int i = 0; i < Length; i++)
+            {
+                str += $"{_array[i]} ";
+            }
+
+            return str;
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool isEqual = true;
+
+            if (obj == null || !(obj is ListArray))
+            {
+                isEqual = false;
+            }
+            else
+            {
+                ListArray list = (ListArray)obj;
+
+                if (list.Length != this.Length)
+                {
+                    isEqual = false;
+                }
+                else
+                {
+                    for (int i = 0; i < this.Length; i++)
+                    {
+                        if (list[i] != this[i])
+                        {
+                            isEqual = false;
+                        }
+                    }
+                }
+            }
+            return isEqual;
         }
 
         private void Constriction()
@@ -377,5 +414,38 @@
             _array = newArray;
         }
 
+        private void AddList(ListArray list)
+        {
+            int[] newArray = new int[list.Length + this.Length];
+            for (int i = 0; i < this.Length; i++)
+            {
+                newArray[i] = this[i];
+            }
+            for (int i = this.Length; i < newArray.Length; i++)
+            {
+                newArray[i] = list[i - Length];
+            }
+            Length += list.Length;
+            _array = newArray;
+        }
+
+        private void AddListByIndex(ListArray list, int index = 0)
+        {
+            int[] newArray = new int[list.Length + _array.Length];
+            for (int i = 0; i < index; i++)
+            {
+                newArray[i] = _array[i];
+            }
+            for (int i = index; i < list.Length + index; i++)
+            {
+                newArray[i] = list[i - index];
+            }
+            for (int i = index + list.Length; i < newArray.Length; i++)
+            {
+                newArray[i] = _array[i - list.Length];
+            }
+            Length += list.Length;
+            _array = newArray;
+        }
     }
 }
