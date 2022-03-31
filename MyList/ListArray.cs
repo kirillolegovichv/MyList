@@ -12,6 +12,28 @@
             Length = 0;
         }
 
+        public ListArray(int value)
+        {
+            _array = new int[10];
+            _array[0] = value;
+            Length = 1;
+        }
+
+        public ListArray(int[] array)
+        {
+            if (array == null || array.Length == 0)
+            {
+                _array = new int[10];
+                Length = 0;
+            }
+            else
+            {
+                _array = array;
+                Length = array.Length;
+                Extention();
+            }
+        }
+
         public int this[int index]
         {
             get
@@ -31,7 +53,6 @@
                 _array[index] = value;
             }
         }
-
 
         public void Add(int value)
         {
@@ -336,11 +357,7 @@
             {
                 int newLength = (int)(_array.Length * 0.6d + 1);
                 int[] newArray = new int[newLength];
-                for (int i = 0; i < _array.Length; i++)
-                {
-                    newArray[i] = _array[i];
-                }
-                _array = newArray;
+                CopyArray(newArray);
             }
         }
 
@@ -348,6 +365,11 @@
         {
             int newLength = (int)(_array.Length * 1.5d + 1);
             int[] newArray = new int[newLength];
+            CopyArray(newArray);
+        }
+
+        private void CopyArray(int[] newArray)
+        {
             for (int i = 0; i < _array.Length; i++)
             {
                 newArray[i] = _array[i];
