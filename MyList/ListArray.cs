@@ -108,7 +108,6 @@
         public void Pop()
         {
             Length--;
-            Constriction();
         }
 
         public void PopFromStart()
@@ -118,7 +117,6 @@
                 _array[i] = _array[i + 1];
             }
             Length--;
-            Constriction();
         }
 
         public void PopByIndex(int index)
@@ -128,28 +126,25 @@
                 _array[i] = _array[i + 1];
             }
             Length--;
-            Constriction();
         }
 
         public void PopElems(int count)
         {
             Length -= count;
-            Constriction();
         }
 
         public void PopElemsFromStart(int count)
         {
             int tmp = count;
-            for (int i = 0; i < count; i++)
+            while (tmp > 0)
             {
-                for (int j = tmp; j < Length; j++)
+                for (int i = 0; i < Length; i++)
                 {
-                    _array[j] = _array[j + 1];
+                    _array[i] = _array[i + 1];
                 }
                 tmp--;
             }
-            Length -= count;
-            Constriction();
+            Length -= count;            
         }
 
         public void PopElemsByIndex(int index, int count)
@@ -172,10 +167,9 @@
                 tmp--;
             }
             Length -= count;
-            Constriction();
         }
 
-        public int Element(int index)
+        public int ReturnElementByIndex(int index)
         {
             if (index > Length)
             {
@@ -235,7 +229,7 @@
         public int MinValue()
         {
             int min = _array[0];
-            for (int i = 1; i < _array.Length; i++)
+            for (int i = 1; i < Length; i++)
             {
                 if (_array[i] < min)
                 {
@@ -250,7 +244,7 @@
         {
             int index = 0;
             int max = _array[0];
-            for (int i = 1; i < _array.Length; i++)
+            for (int i = 1; i < Length; i++)
             {
                 if (_array[i] > max)
                 {
@@ -266,7 +260,7 @@
         {
             int index = 0;
             int min = _array[0];
-            for (int i = 1; i < _array.Length; i++)
+            for (int i = 1; i < Length; i++)
             {
                 if (_array[i] < min)
                 {
@@ -280,9 +274,9 @@
 
         public void AscendingSort()
         {
-            for (int i = 0; i < _array.Length; i++)
+            for (int i = 0; i < Length; i++)
             {
-                for (int j = i + 1; j < _array.Length; j++)
+                for (int j = i + 1; j < Length; j++)
                 {
                     if (_array[j] < _array[i])
                     {
@@ -296,7 +290,7 @@
 
         public void DescendingSort()
         {
-            for (int i = 1; i < _array.Length; i++)
+            for (int i = 1; i < Length; i++)
             {
                 int j = i - 1;
                 while (j >= 0 && _array[j] < _array[j + 1])
@@ -312,12 +306,12 @@
         public int PopElem(int value)
         {
             int tmp;
-            for (int i = 0; i < _array.Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 if (_array[i] == value)
                 {
                     tmp = i;
-                    for (int j = i; j < _array.Length; j++)
+                    for (int j = i; j < Length; j++)
                     {
                         _array[j] = _array[j + 1];
                     }
@@ -327,10 +321,10 @@
             return -1;
         }
 
-        public void PopAllByValue(int value)
+        public int PopAllByValue(int value)
         {
             int count = 0;
-            for (int i = 0; i < _array.Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 if (_array[i] == value)
                 {
@@ -342,7 +336,7 @@
                 }
             }
             Length -= count;
-            Constriction();
+            return count;
         }
 
         public void AddListToEnd(ListArray list)
@@ -353,8 +347,7 @@
             }
 
             AddList(list);
-        }
-
+        }   
 
         public void AddListToStart(ListArray list)
         {
