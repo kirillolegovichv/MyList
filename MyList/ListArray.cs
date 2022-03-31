@@ -345,6 +345,41 @@
             Constriction();
         }
 
+        public void AddListToEnd(ListArray list)
+        {
+            if (list is null)
+            {
+                throw new NullReferenceException();
+            }
+
+            AddList(list);
+        }
+
+
+        public void AddListToStart(ListArray list)
+        {
+            if (list is null)
+            {
+                throw new NullReferenceException();
+            }
+
+            ExtensionListByIndex(list);
+        }
+
+        public void AddListByIndex(ListArray list, int index)
+        {
+            if (list is null)
+            {
+                throw new NullReferenceException();
+            }
+            if (index < 0 || index > Length)
+            {
+                throw new ArgumentException("index is wrong");
+            }
+
+            ExtensionListByIndex(list, index);
+        }
+
         public override string ToString()
         {
             string str = "";
@@ -429,7 +464,7 @@
             _array = newArray;
         }
 
-        private void AddListByIndex(ListArray list, int index = 0)
+        private void ExtensionListByIndex(ListArray list, int index = 0)
         {
             int[] newArray = new int[list.Length + _array.Length];
             for (int i = 0; i < index; i++)
