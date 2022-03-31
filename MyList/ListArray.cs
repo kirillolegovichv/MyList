@@ -12,6 +12,27 @@
             Length = 0;
         }
 
+        public int this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _array[index];
+            }
+            set
+            {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _array[index] = value;
+            }
+        }
+
+
         public void Add(int value)
         {
             if (Length >= _array.Length)
